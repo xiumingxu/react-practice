@@ -92,8 +92,8 @@ const movies = {
   },
 };
 
-class App extends Component {
-  render() {
+ const App =  _=> {
+
     return (
       <div>
         <header className="App-header">
@@ -104,7 +104,6 @@ class App extends Component {
         <MovieCardsList profiles={profiles} movies={movies} users={users} />
       </div>
     );
-  }
 }
 
 export default App;
