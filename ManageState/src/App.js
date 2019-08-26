@@ -1,15 +1,32 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Game from './Game';
 
-const value1 = Math.floor(Math.random() * 100);
-const value2 = Math.floor(Math.random() * 100);
-const value3 = Math.floor(Math.random() * 100);
-const proposedAnswer = Math.floor(Math.random() * 3) + value1 + value2 + value3;
-const numQuestions = 0;
-const numCorrect = 0;
+
+
 
 class App extends Component {
+
+  state = {
+    //  proposedAnswer : Math.floor(Math.random() * 3) + value1 + value2 + value3,
+     numQuestions : 0,
+     numCorrect : 0
+  }
+  handleAnswers = (answerisCorrect)=>{
+    
+    this.setState(preState=>(
+      {numQuestions: preState.numQuestions+1}
+    ))
+    if(answerisCorrect){
+      this.setState(preState=>{
+        return {numCorrect: preState.numCorrect+1};
+      })
+    }
+    console.log(this.state);
+
+  }
+
   render() {
     return (
       <div className="App">
@@ -17,15 +34,10 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
-        <div className="game">
-          <h2>Mental Math</h2>
-          <div className="equation">
-            <p className="text">{`${value1} + ${value2} + ${value3} = ${proposedAnswer}`}</p>
-          </div>
-          <button>True</button>
-          <button>False</button>
+        <div>
+          <Game handleAnswers={this.handleAnswers}/>
           <p className="text">
-            Your Score: {numCorrect}/{numQuestions}
+            Your Score: {this.state.numCorrect}/{this.state.numQuestions}
           </p>
         </div>
       </div>
